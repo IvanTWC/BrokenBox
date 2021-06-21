@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../../template/partial/head'); %>
+  </head>
+  <body>
+    <header>
+      <%- include('../../template/partial/header_no_auth'); %>
+    </header>
+  <body>
+
+    <div class="content">
+      <div style="margin: 20px;">
+        <form action="/register" method="POST" style="max-width: 300px; margin: auto;">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="username" 
+                  name="username"
+                  placeholder="Username" 
+                  value="<% if(username) %><%= username %><% %>"
+                  required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+            </div>
+
+            <div class="form-group">
+              <label for="confirm_password">Password</label>
+              <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+            </div>
+
+            <br/>
+            <% 
+              if (error){
+                %>
+                  <p style="color:red"><%= error %></p>
+                <% 
+              }
+            %>
+            <br/>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+
+        <br><br>
+        <%- include('../../template/partial/not_vulnerable_note'); %> 
+      </div>
+    </div>
+
+    <footer>
+      <%- include('../../template/partial/footer'); %>
+    </footer>
+
+    <%- include('../../template/partial/scripts'); %>
+  </body>
+</html>

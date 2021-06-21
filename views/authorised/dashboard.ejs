@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../../template/partial/head', {username : username}); %>
+  </head>
+  <body>
+    <header>
+      <%- include('../../template/partial/header_auth'); %>
+    </header>
+
+    <header>
+      <%- include('../../template/partial/header_auth_secondary'); %>
+    </header>
+    
+    <div class="content secondary" style="flex-wrap: wrap;">
+      <div style="height: 100%; width: 100%;padding-left:20px; padding-right:20px">
+        <h1>List of product</h1>
+        <div class="row" style="margin: 10px;">
+          <%
+            if(products){
+              for(let p of products){
+                %>
+                  <div class="card" style="width: 300px; height: 350px; margin : 10px; padding:10px">
+                    <img src="data:image/png;base64,<%=p.image%>" 
+                      class="card-img-top" alt="<%= p.name %>" style="width: 150px;">
+                    <div class="card-body" style="position: relative;">
+                      <h5 class="card-title"><%= p.name %></h5>
+                      <p class="card-text">Price : RM <%= p.price %></p>
+                      <a href="/product/<%=p.id%>" class="btn btn-primary" style="bottom: 10px; position: absolute;">Descriptions</a>
+                    </div>
+                  </div>
+                <%
+              }
+            }
+          %>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <%- include('../../template/partial/footer'); %>
+    </footer>
+
+
+    <%- include('../../template/partial/scripts'); %>
+  </body>
+</html>

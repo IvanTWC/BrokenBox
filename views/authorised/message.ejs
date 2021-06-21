@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../../template/partial/head', {username : username}); %>
+  </head>
+  <body>
+    <header>
+      <%- include('../../template/partial/header_auth'); %>
+    </header>
+    
+    <header>
+      <%- include('../../template/partial/header_auth_secondary'); %>
+    </header>
+    
+    <div class="content secondary">
+      <div style="height: 100%; width: 100%; padding-left:20px; padding-right:20px">
+        <h1>Message board</h1>
+        <div class="row">
+          <%
+            if(messages){
+              for(let m of messages){
+                %>
+                <div>
+                  <img 
+                    style="float: left; margin: 10px 30px 10px 30px"
+                    src="/images/profile.png" 
+                    alt="" 
+                    width="40" 
+                    height="40">
+                  <div>
+                    <p>@<%=m.username%></p>
+                    <%=m.message%>
+                  </div>
+                  <hr>
+                </div>
+                <%
+              }
+            }else{
+              %><p>Empty</p><%
+            }
+          %>
+        </div>
+        <%
+        if(secondary_username){
+            %>
+                <form action="/message" method="POST">
+                    <div class="input-group mb-3" style="margin-top: 10px; margin-bottom: 10px;">
+                        <input type="text" id="message" name="message" class="form-control" placeholder="Message" aria-label="message" aria-describedby="basic-addon2" required>
+                        <input type="text" id="username" name="username" value="<%=secondary_username%>" hidden required />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Button</button>
+                        </div>
+                    </div>
+                </form>
+                <br/>
+            <%
+        }
+        %>
+      </div>
+    </div>
+
+    <footer>
+      <%- include('../../template/partial/footer'); %>
+    </footer>
+
+
+    <%- include('../../template/partial/scripts'); %>
+  </body>
+</html>

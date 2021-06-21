@@ -1,0 +1,52 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+.content{
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.content.secondary{
+    height: 85%;
+}
+
+header{
+    height: 5%;
+    position: relative;
+}
+
+header.secondary{
+    height: 5%;
+    position: relative;
+}
+
+
+footer{
+    height: 5%;
+    background-color: lightgrey;
+    position: relative;
+}
+
+footer a{
+    color: grey;
+}
+
+footer .footer-copyright{
+    position : absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.nav_top{
+    background-color: lightgrey;
+}
+
+.form-group{
+    margin-bottom: 10px;
+}
