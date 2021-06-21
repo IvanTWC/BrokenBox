@@ -8,13 +8,13 @@ const logger = require('morgan')
 const session = require('express-session')
 const router = require('./router')
 const database = require('./misc/database')
-const fs = require('fs')
+const fs_helper = require('./helper/fs_helper')
 
 // Setup required directory
-const dbDir = './bin/db/'
-if(!fs.existsSync(dbDir)){
-  fs.mkdirSync(dbDir)
-}
+fs_helper.createDbDirectory()
+
+// Clear on restart
+fs_helper.removeExistingDb()
 
 // Create main sqlite database
 database.initPrimaryDB()
@@ -55,7 +55,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error')
+  res.render('non_authorised/error')
 });
 
 module.exports = app

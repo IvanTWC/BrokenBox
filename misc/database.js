@@ -23,13 +23,13 @@ const initPrimaryDB = () => {
         (err) => {
             if(err){
                 console.log(err)
+            }else{
+                if(newInstance){
+                    _createPrimaryDBTable()
+                }
             }
         }
     );
-    
-    if(newInstance){
-        _createPrimaryDBTable();
-    }
 }
 
 const getPrimaryDB = () => {
@@ -38,7 +38,7 @@ const getPrimaryDB = () => {
 
 const _createPrimaryDBTable = () => {
     primaryDB.serialize(() => {
-        primaryDB.run('CREATE TABLE users(username text, password text, created_time timestamp)'); 
+        primaryDB.run('CREATE TABLE IF NOT EXISTS users(username text, password text, created_time timestamp)'); 
     })
 }
 
@@ -119,11 +119,15 @@ const getSecondaryDB = (username) => {
     let dbPath = `./bin/db/${code}.db`
 
     let newInstance = !fs.existsSync(dbPath)
-    let database = new sqlite3.Database(dbPath)
-
-    if(newInstance){
-        _initSecondaryDB(database)
-    }
+    let database = new sqlite3.Database(dbPath, (err) => {
+        if(err){
+            console.log(err)
+        }else{
+            if(newInstance){
+                _initSecondaryDB(database)
+            }        
+        }
+    })
 
     return database
 }
