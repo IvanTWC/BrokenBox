@@ -117,9 +117,9 @@ const getSecondaryUser = (primary_user, username, password) => {
         let db2 = database.getSecondaryDB(primary_user.username)
 
         let code = md5(password)
-        let cmd = `SELECT username, password FROM users u WHERE u.username = ${username} AND u.password = ${code}`
+        let cmd = `SELECT username, password FROM users u WHERE u.username = "${username}" AND u.password = "${code}"`
         
-        db2.get(cmd, (err, row) => {
+        db2.get(cmd,[], (err, row) => {
             resolve(row)
         })
     })
