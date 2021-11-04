@@ -23,9 +23,9 @@
                   <img src="data:image/png;base64,<%=product.image%>" 
                     class="card-img-top" alt="<%= product.name %>" style="width: 150px;">
                   <div class="card-body" style="position: relative;">
-                    <h5 class="card-title"><%= product.name %></h5>
-                    <p class="card-text">Price : RM <%= product.price %></p>
-                    <p class="card-text">Description : <%= product.description %></p>
+                    <h5 class="card-title"><%- product.name %></h5>
+                    <p class="card-text">Price : RM <%- product.price %></p>
+                    <p class="card-text">Description : <%- product.description %></p>
                   </div>
                 </div>
               <%
