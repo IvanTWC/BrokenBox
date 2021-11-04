@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
     res.render(
         'authorised/login_internal',
         {
-            username: undefined,
+            username: authSession.auth_user.username,
             secondary_username : undefined,
             error: undefined
         }
@@ -30,7 +30,7 @@ router.get('/error', function (req, res, next) {
     }
 
     res.render('authorised/login_internal', {
-        username: authSession.auth_secondary_error_username,
+        username: authSession.auth_user.username,
         error: authSession.auth_secondary_error,
         secondary_username : undefined
     })
